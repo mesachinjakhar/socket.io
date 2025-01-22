@@ -1,6 +1,6 @@
 import Connection from "./componenets/Connection";
 import Broadcast from "./componenets/ChatDashboard";
-import { Inbox } from "./componenets/Inbox";
+import { BroadcastInbox } from "./componenets/BroadcastInbox";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <p className="">📥 Private Inbox</p>
         </div>
 
-        <Inbox />
+        <BroadcastInbox />
       </div>
     </>
   );

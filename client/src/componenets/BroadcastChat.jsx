@@ -3,14 +3,22 @@ import socket from "../socket";
 
 const BroadcastChat = () => {
   const [broadcastMessage, setBroadcastMessage] = useState("");
+  const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState("");
 
   function handleBroadcastMessageChange(e) {
     setBroadcastMessage(e.target.value);
+    setIsSent(false);
+    setError("");
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!broadcastMessage) {
+      return setError("Enter message to broadcast");
+    }
     socket.emit("broadcast", broadcastMessage);
+    setIsSent(true);
   }
 
   return (
@@ -38,12 +46,15 @@ const BroadcastChat = () => {
           disabled={true}
         />
 
+        <p className="text-red-500 text-xs mt-2">{error && error}</p>
+
         <button
           type="submit"
           onClick={handleSubmit}
           className="p-2 w-[100%] mt-2 bg-blue-500"
         >
-          Broadcast
+          {isSent === true ? "Sent" : "Broadcast"}
+          {isSent === true ? <i class="bi bi-check2-all ml-1"></i> : ""}
         </button>
       </form>
     </div>
