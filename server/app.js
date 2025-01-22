@@ -24,6 +24,11 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
   });
+
+  // Broadcast listner
+  socket.on("broadcast", (msg) => {
+    io.emit("broadcast-message", msg); // Broadcast to everyone
+  });
 });
 
 // Start server
