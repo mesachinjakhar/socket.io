@@ -91,5 +91,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Your Name - Sachin Jakhar
+Name - Sachin Jakhar
 Project Link: [https://github.com/mesachinjakhar/socket.io
