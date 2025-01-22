@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import socket from "../socket";
 
 const PrivateChat = () => {
   const [privateMessage, setPrivateMessage] = useState("");
-  const [address, setAddress] = useState("");
+  const [recipientId, setRecipientId] = useState("");
 
   // Message state handler
   function handlePrivateMessageChange(e) {
@@ -10,13 +11,17 @@ const PrivateChat = () => {
   }
 
   // Address state handler
-  function handleAddressChange(e) {
-    setAddress(e.target.value);
+  function handleRecipientChange(e) {
+    setRecipientId(e.target.value);
   }
 
   // Handle form submit
   function handleSubmit(e) {
     e.preventDefault();
+    socket.emit("private", {
+      message: privateMessage,
+      recipientId: recipientId,
+    });
   }
 
   return (
@@ -38,10 +43,10 @@ const PrivateChat = () => {
           To :
         </label>
         <input
-          value={address}
-          onChange={handleAddressChange}
+          value={recipientId}
+          onChange={handleRecipientChange}
           className="w-[100%] mt-2 p-2"
-          placeholder="Enter address "
+          placeholder="Enter recipient id "
           type="text"
         />
 

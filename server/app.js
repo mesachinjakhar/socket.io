@@ -16,18 +16,35 @@ const io = new Server(server, {
 // Middleware
 app.use(cors());
 
+let users = [];
+
 // Socket.IO connection
 io.on("connection", (socket) => {
   console.log("New Connection: ", socket.id);
 
+  // push to user array
+  users.push({ id: users.length + 1, socketId: socket.id });
+
+  io.emit("active-users", users.length);
+
   // Disconnect event
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
+    // delete user from users array
+    users = users.filter((usr) => usr.socketId !== socket.id);
+    io.emit("active-users", users.length);
   });
 
   // Broadcast listner
   socket.on("broadcast", (msg) => {
     io.emit("broadcast-message", { from: socket.id, message: msg }); // Broadcast to everyone
+  });
+
+  socket.on("private", (msg) => {
+    io.to(msg.recipientId).emit("private-message", {
+      from: socket.id,
+      message: msg.message,
+    });
   });
 });
 
