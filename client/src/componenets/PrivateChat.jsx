@@ -23,7 +23,7 @@ const PrivateChat = () => {
     <div className="w-[500px] border p-5 rounded">
       <form>
         <h1 className="text-lg mb-3">🔒 Chat Privately</h1>
-        <label className="text-lg ml-1" htmlFor="">
+        <label className="text-base ml-1" htmlFor="">
           Enter Message :
         </label>
         <input
@@ -34,8 +34,8 @@ const PrivateChat = () => {
           type="text"
         />
 
-        <label className="text-lg ml-1" htmlFor="">
-          TO :
+        <label className="text-base ml-1" htmlFor="">
+          To :
         </label>
         <input
           value={address}

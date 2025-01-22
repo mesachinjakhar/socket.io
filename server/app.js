@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
 
   // Broadcast listner
   socket.on("broadcast", (msg) => {
-    io.emit("broadcast-message", msg); // Broadcast to everyone
+    io.emit("broadcast-message", { from: socket.id, message: msg }); // Broadcast to everyone
   });
 });
 

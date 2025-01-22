@@ -17,7 +17,7 @@ const BroadcastChat = () => {
     <div className="w-[500px] border p-5 rounded">
       <form>
         <h1 className="text-lg mb-3">📢 Broadcast Message</h1>
-        <label className="text-lg ml-1" htmlFor="">
+        <label className="text-base ml-1" htmlFor="">
           Enter Message :
         </label>
         <input
@@ -28,8 +28,8 @@ const BroadcastChat = () => {
           type="text"
         />
 
-        <label className="text-lg ml-1" htmlFor="">
-          TO :
+        <label className="text-base  ml-1" htmlFor="">
+          To :
         </label>
         <input
           className="w-[100%] mt-2 p-2"

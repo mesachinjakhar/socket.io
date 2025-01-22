@@ -7,12 +7,14 @@ export const Inbox = () => {
   // Add socket listener once when the component mounts
   useEffect(() => {
     const handleBroadcastMessage = (msg) => {
-      console.log("Message received is: ", msg);
-
       // Add the new message to the state
       setBroadcastMessages((prevMessages) => [
         ...prevMessages,
-        { id: prevMessages.length + 1, message: msg },
+        {
+          msgId: prevMessages.length + 1,
+          from: msg.from,
+          message: msg.message,
+        },
       ]);
     };
 
@@ -34,9 +36,7 @@ export const Inbox = () => {
                 <i className="bi bi-person-circle text-2xl"></i>
               </div>
               <div>
-                <p className="text-xs text-gray-300">
-                  From lawTrHmcMTTAXaGaAAHj{" "}
-                </p>
+                <p className="text-xs text-gray-300">From {msg.from} </p>
                 <p className="text-sm mt-[1px]">{msg.message}</p>
               </div>
             </div>
